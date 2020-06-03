@@ -9,6 +9,10 @@ import com.oleskiy.taboola.view.api.Repository;
 
 public class MyBroadcastReceiver extends BroadcastReceiver
 {
+
+    /*
+    * Get color for background and index item from another app via broadcast
+    * */
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "Data Received from External App for change item's color", Toast.LENGTH_SHORT).show();

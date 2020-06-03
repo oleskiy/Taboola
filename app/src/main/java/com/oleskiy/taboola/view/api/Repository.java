@@ -32,6 +32,10 @@ public class Repository {
         getRemoteData();
     }
 
+    /*
+    * Get data from server
+    * and save data to DB
+     */
     private void getRemoteData(){
         Retrofit apiService = ApiService.initApiService();
         apiService.create(ApiService.ApiInterface.class).getItems()
@@ -53,9 +57,11 @@ public class Repository {
 
     public void updateColor(int index, int color){
         DBHelper.getInstance().updateColor(index, color);
-
     }
 
+    /*
+    * after via LiveData send items to recyclerview
+    */
     public void sendDataToList(){
         widgetModels.clear();
         ArrayList<Item> items = DBHelper.getInstance().getAllItems();
@@ -65,17 +71,21 @@ public class Repository {
         repositoryModelMutableLiveData.postValue(widgetModels);
     }
 
+    /*
+    * add taboola widget where you want by index in array and type of widget
+    */
     void addTaboolaWidget(int index, Item.ViewType type) {
-
-        if (type == Item.ViewType.TABOOLA_FEED) {
-            Item taboolaFeedItem = new Item();
-            taboolaFeedItem.setViewType(Item.ViewType.TABOOLA_FEED);
-            widgetModels.add(index, taboolaFeedItem);
-        } else {
-            Item taboolaWidgetItem = new Item();
-            taboolaWidgetItem.setViewType(Item.ViewType.TABOOLA_WIDGET);
-            widgetModels.add(index, taboolaWidgetItem);
-        }
+     if(index<widgetModels.size()) {
+         if (type == Item.ViewType.TABOOLA_FEED) {
+             Item taboolaFeedItem = new Item();
+             taboolaFeedItem.setViewType(Item.ViewType.TABOOLA_FEED);
+             widgetModels.add(index, taboolaFeedItem);
+         } else {
+             Item taboolaWidgetItem = new Item();
+             taboolaWidgetItem.setViewType(Item.ViewType.TABOOLA_WIDGET);
+             widgetModels.add(index, taboolaWidgetItem);
+         }
+     }
     }
 
     }

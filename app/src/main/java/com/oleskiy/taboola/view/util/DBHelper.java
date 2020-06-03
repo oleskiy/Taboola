@@ -37,10 +37,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {  }
 
-    }
-
+    /*
+    * Add new item or if item exist - update
+    * @itemModel - item for add or update
+    * */
     public void addOrUpdateData(Item itemModel){
         ContentValues cv = new ContentValues();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -77,6 +79,10 @@ public class DBHelper extends SQLiteOpenHelper {
         dbHelper.close();
     }
 
+
+    /*
+    * Get all items from DB
+    * */
     public ArrayList<Item> getAllItems(){
         ArrayList<Item> items = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -100,7 +106,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return items;
     }
 
-
+/*
+* Update item's background color
+* */
     public int updateColor(int index, int color){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
