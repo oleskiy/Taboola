@@ -1,0 +1,2 @@
+rootProject.name='Taboola'
+include ':app'
